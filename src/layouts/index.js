@@ -58,7 +58,7 @@ class Index extends React.Component {
     return <ThemeProvider theme={theme}>
       <Inner>
         <Page>
-          <Header title={title}/>
+          <Header/>
           <StyledContainer>
             { children({ ...this.props }) }
           </StyledContainer>

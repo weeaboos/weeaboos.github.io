@@ -4,6 +4,7 @@ import os
 LYRICS_FOLDER = 'lyrics/'
 TARGET_POST_FOLDER = 'src/posts/'
 TARGET_HELPER_FOLDER = TARGET_POST_FOLDER + 'helper/'
+SONG_LIST_FILE = 'src/utils/lyrics.js'
 
 __frontmatter__ = '__frontmatter__'
 __html__ = '__html__'
@@ -85,7 +86,11 @@ def generate_files(filename):
   write_to_file(mkdn_filename, master_markdown)
 
 # Generate filename
-for filename in os.listdir(LYRICS_FOLDER):
-  if '.txt' not in filename: continue
-
+filenames = os.listdir(LYRICS_FOLDER)
+filenames = list(filter(lambda filename: '.txt' in filename, filenames))
+for filename in filenames:
   generate_files(filename)
+
+filenames = list(map(lambda filename: filename.split('.txt')[0], filenames))
+song_list = 'export default {}'.format(json.dumps(filenames, ensure_ascii=False))
+write_to_file(SONG_LIST_FILE, song_list)

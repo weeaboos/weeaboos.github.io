@@ -4,18 +4,10 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import {Flex, Box} from 'grid-styled';
 import { shuffle, simpleRange } from '../utils';
+import Ticker from './ticker';
+import lyrics from '../utils/lyrics';
 
-const Brand = styled('a')`
-  width: 100%;
-  display: block;
-  text-decoration: none;
-  border-bottom: 0;
-  font-weight: bold;
-  font-size: 48px;
-  margin: 0 auto;
-`;
-
-const StyledNav = Flex.extend`
+const StyledNav = Box.extend`
   height: 125px;
   width: 100%;
   padding: 32px 16px 24px 16px;
@@ -26,45 +18,32 @@ const StyledNav = Flex.extend`
   text-align: center;
 `;
 
-// Bird header animation
-const birds = ['🐧', '🐦', '🐤'];
-const birdRotateSpeed = 1888;
-const getBirds = () => {
-  let arrayRange = simpleRange(birds.length);
-  return shuffle(arrayRange).map(idx => birds[idx]).join("");
-};
-
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lastScrollTop: 0,
-      title: props.title,
-    };
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.setState({
-        title: getBirds()
-      });
-    }, birdRotateSpeed);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    const { title } = this.state;
-    return <StyledNav is="header" justify="space-between">
-      <Brand href="/" id="brand">{ title }</Brand>
-    </StyledNav>;
-  }
+// Not inclusive [a, b)
+const randIntBetween = (a, b) => {
+  return Math.floor(Math.random() * b) + a;
 }
 
-Header.propTypes = {
-  title: PropTypes.string
+const getRandomLyric = () => {
+  const randInt = randIntBetween(0, lyrics.length);
+  return openJsonHelper(lyrics[randInt]);
 };
+
+const openJsonHelper = helperName => {
+  // https://github.com/gatsbyjs/gatsby/issues/356
+  const jsonData = require(`../posts/helper/${helperName}.json`);
+  return jsonData;
+};
+
+const Header = () => {
+  const randomLyric = getRandomLyric();
+  const speed = randomLyric.bpm;
+  const lyrics = randomLyric.lyrics;
+  const text = lyrics[randIntBetween(0, lyrics.length)].lyrics.join(' ');
+  return <StyledNav is="header">
+    <Link to='/'>
+      <Ticker text={text} speed={speed}></Ticker>
+    </Link>
+  </StyledNav>;
+}
 
 export default Header;

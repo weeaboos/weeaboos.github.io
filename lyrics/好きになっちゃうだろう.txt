@@ -5,6 +5,7 @@ language: 日本語
 lyrics: 好きになっちゃうだろう
 date: 2017-09-30
 helper: lyricist:好きになっちゃうだろう
+bpm: 120
 __frontmatter__
 __html__
 __html__
