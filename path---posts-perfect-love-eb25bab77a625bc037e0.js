@@ -1,0 +1,2 @@
+webpackJsonp([0x9afdf9887d24],{382:function(e,t){e.exports={data:{markdownRemark:{html:"",frontmatter:{title:"Perfect Love",date:"September 30, 2017",language:"韓国語",artist:"LOONA",lyrics:"Perfect Love",helper:"lyricist:Perfect Love"}}},pathContext:{slug:"/posts/Perfect Love/"}}}});
+//# sourceMappingURL=path---posts-perfect-love-eb25bab77a625bc037e0.js.map
