@@ -1,1 +1,1 @@
-export default ["好きになっちゃうだろう"]
+export default ["Perfect Love", "好きになっちゃうだろう", "내가 제일 잘 나가", "Good Day"]

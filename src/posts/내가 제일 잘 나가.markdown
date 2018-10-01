@@ -1,0 +1,9 @@
+---
+title: 내가 제일 잘 나가
+artist: 2NE1
+language: 韓国語
+lyrics: 내가 제일 잘 나가
+date: 2017-09-30
+helper: lyricist:내가 제일 잘 나가
+bpm: 150
+---

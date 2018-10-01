@@ -1,6 +1,6 @@
 {
-  "name": "albert-gatsby-site",
-  "description": "albert's corner",
+  "name": "weeaboos-gatsby-site",
+  "description": "weeaboos lyrics",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",

@@ -41,7 +41,8 @@ const PostContainer = styled('div')`
 
 const MainContent = styled('div')`
   margin: 32px 0;
-
+  font-size: 14px;
+  
   h1, h2, h3, ul, p {
     margin: 8px 0;
   }

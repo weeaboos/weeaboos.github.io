@@ -10,7 +10,7 @@ const MainContainer = styled('div')`
 `;
 
 const LyricContainer = styled('div')`
-  width: 48%;
+  width: 50%;
   line-height: 1.4;
   border-top: solid 1px;
   border-color: #E7EEFD;
@@ -28,7 +28,7 @@ const Button = styled('button')`
 `;
 
 const ButtonContainer = styled('div')`
-  border-top: solid 1px;
+  border-bottom: solid 1px;
   border-color: #E7EEFD;
   padding: 16px;
   text-align: center;
@@ -68,26 +68,34 @@ class Lyricist extends React.Component {
 
       const { version } = lyrics[val];
         
-      return <ButtonContainer>
-        <Button onClick={() => this.swapOrder(tabIdx, idx)}>
-          {version}
-        </Button>
-      </ButtonContainer>;
+      return <Button onClick={() => this.swapOrder(tabIdx, idx)}>
+        {version}
+      </Button>;
     });
   }
 
-  render() {
-    const { title, language, lyrics } = this.props.data;
+  renderLyricsTab(tabIdx) {
     const { activeTabOrder } = this.state;
+    const { lyrics } = this.props.data;
+    if (tabIdx >= activeTabOrder.length) return null;
+    if (activeTabOrder[tabIdx] > lyrics.length) return null;
 
+    const lyricObject = lyrics[activeTabOrder[tabIdx]];
+    return <div>
+      <ButtonContainer>
+        { this.renderChangeButtons(tabIdx) }
+      </ButtonContainer>
+      <Lyric lyricObject={lyricObject} />
+    </div>;
+  }
+
+  render() {
     return <MainContainer>
       <LyricContainer>
-        <Lyric lyricObject={lyrics[activeTabOrder[0]]} />
-        { this.renderChangeButtons(0) }
+        { this.renderLyricsTab(0) }
       </LyricContainer>
       <LyricContainer>
-        <Lyric lyricObject={lyrics[activeTabOrder[1]]} />
-        { this.renderChangeButtons(1) }
+        { this.renderLyricsTab(1) }
       </LyricContainer>
     </MainContainer>;
   }
