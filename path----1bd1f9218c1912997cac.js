@@ -1,0 +1,2 @@
+webpackJsonp([60335399758886],{154:function(t,a){t.exports={data:{site:{siteMetadata:{title:"歌詞大好き",github:"https://github.com/aulb"}}},layoutContext:{}}}});
+//# sourceMappingURL=path----1bd1f9218c1912997cac.js.map
